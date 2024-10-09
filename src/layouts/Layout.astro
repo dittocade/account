@@ -1,0 +1,57 @@
+---
+import Icon from "@assets/icon.png";
+import "@fontsource-variable/baloo-2";
+import Header from "@fancade-club/comps/layouts/Header.astro";
+import Footer from "@fancade-club/comps/layouts/Footer.astro";
+import Disclaimer from "@fancade-club/comps/layouts/Disclaimer.astro";
+import NavLink from "@fancade-club/comps/layouts/NavLink.astro"
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "", description = "" } = Astro.props;
+
+const metaDescription =
+  description ||
+  "The Fancade Club is a worldwide community of Fancade enthusiasts. Join and become a member today!";
+
+const metaTitle = (title && title + " - ") + "Fancade Club Account";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={metaDescription} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href={Icon.src} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{metaTitle}</title>
+  </head>
+  <body>
+    <Header title="Account" image={Icon}><NavLink href="https://fancade.club">Club</NavLink></Header>
+    <main>
+      {title && <h1>{title}</h1>}
+      <slot />
+    </main>
+    <Footer><Disclaimer/> </Footer>
+  </body>
+
+  <style>
+    body {
+      min-height: 100vh;
+      color: #333333;
+      font-size: 14pt;
+      font-family: "Baloo 2 Variable", system-ui;
+      font-weight: 500;
+      text-align: justify;
+    }
+    main {
+      min-height: 90vh;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  </style>
+</html>
