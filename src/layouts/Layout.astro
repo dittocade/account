@@ -2,6 +2,7 @@
 import Icon from "@assets/icon.png";
 import "@fontsource-variable/baloo-2";
 import Header from "@fancade-club/comps/layouts/Header.astro";
+import Heading from "@fancade-club/comps/layouts/Heading.astro";
 import Footer from "@fancade-club/comps/layouts/Footer.astro";
 import Disclaimer from "@fancade-club/comps/layouts/Disclaimer.astro";
 import NavLink from "@fancade-club/comps/layouts/NavLink.astro"
@@ -33,7 +34,7 @@ const metaTitle = (title && title + " - ") + "Fancade Club Account";
   <body>
     <Header title="Account" image={Icon}><NavLink href="https://fancade.club">Club</NavLink></Header>
     <main>
-      {title && <h1>{title}</h1>}
+      {title && <Heading level={1} id="">{title}</Heading>}
       <slot />
     </main>
     <Footer><Disclaimer/> </Footer>

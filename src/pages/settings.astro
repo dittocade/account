@@ -3,6 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import Form from "@fancade-club/comps/forms/Form.astro";
 import Input from "@fancade-club/comps/forms/Input.astro";
 import Button from "@fancade-club/comps/forms/Button.astro";
+import Heading from "@fancade-club/comps/layouts/Heading.astro";
 import { actions } from "astro:actions";
 
 const { user } = Astro.locals;
@@ -16,7 +17,7 @@ if (!user) return Astro.redirect("/signup");
     <Input type="password" name="password" label="Password" />
     <Button>Update</Button>
   </Form>
-  <h2>Account Management</h2>
+  <Heading level={2} id="manage">Account Management</Heading>
   <Form>
     <Button formmethod="POST" formaction={"/signup" + actions.logout}
       >Log out</Button
