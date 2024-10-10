@@ -11,8 +11,8 @@ if (!user) return Astro.redirect("/signup");
 
 <Layout title="Settings">
   <Form method="POST" action={"/settings" + actions.settings}>
-    <Input name="name" label="Name" value={user.name} />
-    <Input name="slug" label="Handle" value={user.slug} />
+    <Input name="name" label="Display Name" value={user.name} />
+    <Input name="slug" label="Username" value={user.slug} />
     <Input type="password" name="password" label="Password" />
     <Button>Update</Button>
   </Form>

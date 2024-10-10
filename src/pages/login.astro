@@ -10,7 +10,7 @@ if (Astro.locals.user) return Astro.redirect("/account");
 
 <Layout title="Log In">
   <Form method="POST" action={"/" + actions.login}>
-    <Input required name="slug" label="Handle" />
+    <Input required name="slug" label="Username" />
     <Input required type="password" name="password" label="Password" />
     <Button>Log in</Button>
   </Form>
