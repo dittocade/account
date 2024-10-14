@@ -1,11 +1,11 @@
 import { login } from "./login";
-import { signup } from "./signup";
 import { settings } from "./settings";
 import { logout } from "./logout";
+import { del } from "./delete";
 
 export const server = {
   login,
-  signup,
   settings,
   logout,
+  delete: del
 };

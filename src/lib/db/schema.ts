@@ -3,8 +3,8 @@ import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
 export const users = pgTable("users", {
   id: text("id").primaryKey(),
   slug: text("slug").unique().notNull(),
-  password: text("password").notNull(),
   name: text("name").notNull(),
+  password: text("password"),
 });
 
 export const sessions = pgTable("sessions", {
@@ -16,4 +16,12 @@ export const sessions = pgTable("sessions", {
     withTimezone: true,
     mode: "date",
   }).notNull(),
+});
+
+export const connections = pgTable("connections", {
+  userId: text("user_id")
+    .notNull()
+    .references(() => users.id),
+  provider: text("provider").notNull(),
+  identity: text("identity").notNull(),
 });

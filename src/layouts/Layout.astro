@@ -5,7 +5,7 @@ import Header from "@fancade-club/comps/layouts/Header.astro";
 import Heading from "@fancade-club/comps/layouts/Heading.astro";
 import Footer from "@fancade-club/comps/layouts/Footer.astro";
 import Disclaimer from "@fancade-club/comps/layouts/Disclaimer.astro";
-import NavLink from "@fancade-club/comps/layouts/NavLink.astro"
+import NavLink from "@fancade-club/comps/layouts/NavLink.astro";
 
 interface Props {
   title?: string;
@@ -32,12 +32,20 @@ const metaTitle = (title && title + " - ") + "Fancade Club Account";
     <title>{metaTitle}</title>
   </head>
   <body>
-    <Header title="Account" image={Icon}><NavLink href="https://fancade.club">Club</NavLink></Header>
+    <Header title="Account" image={Icon}
+      ><NavLink href="https://fancade.club">Club</NavLink></Header
+    >
     <main>
-      {title && <Heading level={1} id="">{title}</Heading>}
+      {
+        title && (
+          <Heading level={1} id="">
+            {title}
+          </Heading>
+        )
+      }
       <slot />
     </main>
-    <Footer><Disclaimer/> </Footer>
+    <Footer><Disclaimer /> </Footer>
   </body>
 
   <style>

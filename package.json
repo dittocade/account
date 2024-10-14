@@ -34,16 +34,18 @@
   "dependencies": {
     "@astrojs/check": "^0.9.3",
     "@astrojs/netlify": "^6.0.0-beta.0",
-    "@fancade-club/comps": "^1.4.0",
+    "@fancade-club/comps": "^1.5.0",
     "@fontsource-variable/baloo-2": "^5.1.0",
     "@lucia-auth/adapter-drizzle": "^1.1.0",
     "@neondatabase/serverless": "^0.10.1",
     "@node-rs/argon2": "^2.0.0",
     "@sindresorhus/slugify": "^2.2.1",
     "@types/zxcvbn": "^4.4.5",
+    "arctic": "^1.9.2",
     "astro": "^5.0.0-beta.4",
     "drizzle-orm": "^0.34.0",
     "lucia": "^3.2.1",
+    "zod-validation-error": "^3.4.0",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {

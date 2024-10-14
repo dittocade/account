@@ -21,6 +21,7 @@ npm run dev
 ## Hosting
 
 The Fancade Club uses [Netlify](https://netlify.com) and [Neon](https://neon.tech) to provide its services for free. For setting up these or other providers, see [Astro adapters](https://docs.astro.build/en/guides/server-side-rendering/) and [Drizzle setup](https://orm.drizzle.team/docs/get-started).
+Also take a look at [the Astro configuration](./astro.config.mjs) for required environment variables.
 
 ## Disclaimer
 

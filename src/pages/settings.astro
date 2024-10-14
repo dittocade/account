@@ -4,10 +4,22 @@ import Form from "@fancade-club/comps/forms/Form.astro";
 import Input from "@fancade-club/comps/forms/Input.astro";
 import Button from "@fancade-club/comps/forms/Button.astro";
 import Heading from "@fancade-club/comps/layouts/Heading.astro";
+import { db, connections } from "@lib/db";
+import { eq } from "drizzle-orm";
 import { actions } from "astro:actions";
 
 const { user } = Astro.locals;
 if (!user) return Astro.redirect("/signup");
+
+const connected = await db
+  .select({ provider: connections.provider })
+  .from(connections)
+  .where(eq(connections.userId, user.id));
+const connectedProviders = connected.map((c) => c.provider);
+const prefix = (provider: string) =>
+  connectedProviders.includes(provider) ? "Remove" : "Add";
+const path = (provider: string) =>
+  `/connections/${provider}/${connectedProviders.includes(provider) ? "remove" : "request"}`;
 ---
 
 <Layout title="Settings">
@@ -17,25 +29,24 @@ if (!user) return Astro.redirect("/signup");
     <Input type="password" name="password" label="Password" />
     <Button>Update</Button>
   </Form>
+  <Heading level={2} id="manage">Connections</Heading>
+  <Form>
+    <Button formaction={path("discord")}>{prefix("discord")} Discord</Button>
+    <Button formaction={path("github")}>{prefix("github")} GitHub</Button>
+  </Form>
   <Heading level={2} id="manage">Account Management</Heading>
   <Form>
-    <Button formmethod="POST" formaction={"/signup" + actions.logout}
-      >Log out</Button
-    >
+    <Button formmethod="POST" formaction={"/" + actions.logout}>Log out</Button>
+    <Button formaction={"/delete"}>Delete account</Button>
   </Form>
 </Layout>
 
 <script>
-  import { slug } from "@lib/schema";
+  import { z } from "zod";
+  import { slug, emptyString, password } from "@lib/schema";
+  import { validateInput } from "@lib/validate";
 
-  const nameInput = document.getElementById("name-input") as HTMLInputElement;
-  const slugInput = document.getElementById("slug-input") as HTMLInputElement;
-
-  function setSlug(this: HTMLInputElement) {
-    const { success, data } = slug().safeParse(this.value);
-    if (success) slugInput.value = data;
-  }
-
-  nameInput.addEventListener("input", setSlug);
-  slugInput.addEventListener("input", setSlug);
+  validateInput("name-input", z.string());
+  validateInput("slug-input", slug());
+  validateInput("password-input", emptyString().or(password()));
 </script>

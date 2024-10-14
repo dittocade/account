@@ -10,4 +10,20 @@ export const slug = () =>
     z.string().min(3).max(16),
   );
 
-export const password = () => z.string().refine((val) => zxcvbn(val).score > 4);
+export const password = (verbose = false) =>
+  z.string().superRefine((val, ctx) => {
+    const result = zxcvbn(val);
+    if (result.score < 4) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: result.feedback.warning || "This password is insecure",
+      });
+      if (!verbose) return;
+      for (const suggestion of result.feedback.suggestions) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: suggestion.replace(/\.$/, ""),
+        });
+      }
+    }
+  });

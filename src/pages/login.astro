@@ -4,15 +4,28 @@ import Layout from "@layouts/Layout.astro";
 import Form from "@fancade-club/comps/forms/Form.astro";
 import Input from "@fancade-club/comps/forms/Input.astro";
 import Button from "@fancade-club/comps/forms/Button.astro";
+import Heading from "@fancade-club/comps/layouts/Heading.astro";
 
 if (Astro.locals.user) return Astro.redirect("/account");
 ---
 
-<Layout title="Log In">
+<Layout title="Let's get you started!">
   <Form method="POST" action={"/" + actions.login}>
     <Input required name="slug" label="Username" />
     <Input required type="password" name="password" label="Password" />
-    <Button>Log in</Button>
+    <Button>Log in or sign up</Button>
   </Form>
-  <p>Not a member yet? <a href="/signup">Sign up</a>!</p>
+  <Heading level={2} id="connect">Or continue with</Heading>
+  <Form>
+    <Button formaction="/connections/discord/request">Discord</Button>
+    <Button formaction="/connections/github/request">GitHub</Button>
+  </Form>
 </Layout>
+
+<script>
+  import { slug, password } from "@lib/schema";
+  import { validateInput } from "@lib/validate";
+
+  validateInput("slug-input", slug());
+  validateInput("password-input", password());
+</script>
