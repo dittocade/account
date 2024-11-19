@@ -1,4 +1,4 @@
-# Fancade Club Account
+# Dittocade Account
 
 Account management for members of the Fancade Club.
 
@@ -25,4 +25,4 @@ Also take a look at [the Astro configuration](./astro.config.mjs) for required e
 
 ## Disclaimer
 
-We are not affiliated with Fancade. See [our disclaimer](https://fancade.club/disclaimer). For inquiries please [contact us](https://fancade.club/contact).
+We are not affiliated with Fancade. See [our disclaimer](https://ditto.cade.party/disclaimer). For inquiries please [contact us](https://ditto.cade.party/contact).

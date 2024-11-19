@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "https://fancade-club-account.netlify.app/*"
+  to = "https://account.cade.party/:splat"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://account.fancade.club/*"
+  to = "https://account.cade.party/:splat"
+  status = 301
+  force = true
